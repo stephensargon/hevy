@@ -21,7 +21,7 @@ It also handles scheduling. Type `/reschedule` and it figures out your next trai
 There's no app to install. The entire system is a set of markdown files and AI coding agent commands. It's built for Claude Code, but the heavy lifting is in the markdown — the routines, the progression rules, the weight lists. That means you can adapt it for **Cursor, GitHub Copilot, Codex, or any agent that can read markdown and call an MCP server**. Most of the work is already done for you.
 
 ```
-routines/          # Your training programs (Day A, B, C)
+routines/          # Your training programs (Upper A/B, Lower A/B)
 weights.md         # Available equipment weights at your gym
 CLAUDE.md          # The rules Claude follows (progression, warm-ups, rest, partials)
 .claude/commands/  # Slash commands: /generate-next, /reschedule

@@ -1,15 +1,16 @@
-First, ask me: **"Which day are you training? (A, B, or C)"** — wait for my answer before continuing.
+First, ask me: **"Which day are you training? (Upper A, Upper B, Lower A, or Lower B)"** — wait for my answer before continuing.
 
 Once I answer, load the corresponding routine from the `routines/` folder:
-- Day A → `routines/day-A.md`
-- Day B → `routines/day-B.md`
-- Day C → `routines/day-C.md`
+- Upper A → `routines/upper-a.md`
+- Upper B → `routines/upper-b.md`
+- Lower A → `routines/lower-a.md`
+- Lower B → `routines/lower-b.md`
 
 The routine file defines the exercises, target rep ranges, and muscle focus for that day. Use it as the blueprint — these are the exercises to program, in order.
 
 Then fetch two things using MCP:
 1. **My last workout for that day** (search recent workouts for the matching day) — to get actual sets, reps, RPE, weights performed, and any notes I left on exercises. **Exercise notes take high priority** — if I noted why I used a lighter weight, flagged something to change, or said what I want next time, honour that directly in the next session.
-2. **The most recent Hevy routine for that day** (use `get-routines`, find the most recent "Day X" routine by date in the name) — to see what was planned for that session.
+2. **The most recent Hevy routine for that day** (use `get-routines`, find the routine whose title starts with that day name, e.g. "Upper A", ignoring titles containing "OLD"; if several match, take the one with the latest date in its title) — to see what was planned for that session.
 
 **Before proposing the next session**, output a performance summary block. Start with a header like:
 
