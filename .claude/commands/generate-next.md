@@ -15,10 +15,10 @@ Then fetch two things using MCP:
 **Before proposing the next session**, output a performance summary block. Start with a header like:
 
 ```
-I have the last Day B workout ("Day B - 4/3", March 9) and the matching routine. Here's the breakdown:
+I have the last Lower B workout ("Lower B (Hamstring focus)", 30 October) and the matching routine. Here's the breakdown:
 
 ---
-Performance Summary — Last Day B (9 March)
+Performance Summary — Last Lower B (30 October)
 ```
 
 **Missing or extra sets:** If the logged workout has fewer sets than the routine prescribed for an exercise (or more), and there's no note explaining why, **ask me before continuing** — e.g. "Hammer Curl shows 2 logged sets but the routine had 3 — did you skip a set or forget to log it?" Base the next session on my answer, not on assumptions.
@@ -106,33 +106,34 @@ Things that **do** count as differences:
 ### What to do
 
 If the score indicates the routine is already up to date (3+ weight matches), **ask before continuing**:
-> "The current Day X routine already looks updated — X out of Y exercises match the weights from your last workout. Do you still want me to generate a new one?"
+> "The current <day> routine already looks updated — X out of Y exercises match the weights from your last workout. Do you still want me to generate a new one?"
 
 Only proceed if the user confirms. If the routine is clearly stale (0–1 matches), skip this check and proceed normally.
 
 ## Routine date — how to pick the right date for the new routine title
 
-The routine title must reflect the date the session will actually take place, **not** the date you're generating it. Always calculate it fresh:
+The routine title must reflect the date the session will actually take place, **not** the date you're generating it. Always calculate it fresh.
 
-- Workout days are **Monday, Wednesday, Friday** only.
-- Day types alternate: A → B → A → B → …
-- Look at today's date and the last workout (which you already fetched). The last workout title tells you what day type was last done and when.
-- The **next occurrence** of this day type is the first workout weekday (Mon/Wed/Fri) where this day type falls in the alternating sequence, starting from the day after the last workout.
+**Time zone:** I train in Australia/Sydney time. Hevy returns `start_time` in UTC — convert it to Australia/Sydney before working out which day a workout happened on (a 21:30 UTC workout on Monday is a Tuesday-morning session). Treat "today" as today's date in Australia/Sydney.
 
-**Example:** Today is Wednesday and the user just did Day A. The alternation from here is:
-- Friday → Day B
-- Monday → Day A ← next time Day A comes up
-- Wednesday → Day B
+**Weekly slots** — I train Tuesday to Friday, and each day type has a fixed slot:
 
-So the new Day A routine should be titled `Day A - DD/MM` using **next Monday's date**.
+| Day | Session |
+| --- | ------- |
+| Tuesday | Upper A |
+| Wednesday | Lower A |
+| Thursday | Upper B |
+| Friday | Lower B |
 
-**Example:** Today is Friday and the user just did Day B. The alternation:
-- Monday → Day A
-- Wednesday → Day B ← next time Day B comes up
+The session time varies (morning or afternoon) — it doesn't affect the date.
 
-So the new Day B routine should be titled `Day B - DD/MM` using **next Wednesday's date**.
+The new routine's date is the **next occurrence of that day type's slot weekday** after the last workout of that day type. If that date is before today (Sydney time), use the next occurrence from today onwards.
 
-**Title format:** `Day X - DD/MM` (no year, no weekday name). E.g. `Day A - 23/3`, `Day B - 25/3`.
+**Example:** I just did Upper A on Tuesday 24 November. The new Upper A routine is titled for **Tuesday 1 December**.
+
+**Example:** I did Upper B on Friday 20 November (a day late). Its slot is Thursday, so the new Upper B routine is titled for **Thursday 26 November**.
+
+**Title format:** `<existing title without date> - DD/MM` (no year, no weekday name). E.g. `Upper A (Chest/Tricep focus) - 1/12`, `Lower A (Quad focus) - 25/11`.
 
 ---
 
@@ -143,7 +144,7 @@ Output format:
 
 Example output:
 ```
-Here's your next Day A session, based on today's workout:
+Here's your next Upper A session, based on today's workout:
   ---             
   Bench Press (Barbell)
   Nex time you do: 4 × 6–8 @ 27.5kg
@@ -161,7 +162,7 @@ After outputting the workout, ask: **"Happy with this, or want any changes?"**
 
 - If they want changes, apply them and ask again.
 - Once they're happy, ask: **"Should I create a new routine in Hevy?"**
-- If yes, fetch the existing routine using `get-routines` to find the matching Day X routine. First, **rename the old routine** by calling `update-routine` to append "-OLD" to its title (e.g. "Day B - 4/3" becomes "Day B - 4/3-OLD"). Then call `create-routine` with the new exercises and sets. **Use the date calculated in the "Routine date" section above** — always the next upcoming workout weekday for this day type, never today's date and never reusing the old routine's date. Use the `exerciseTemplateId` values already seen in the last workout data — no need to look them up again. Set `reps` and `repRange: {start: reps, end: reps}` to the target rep count. Set `weightKg` to the target weight. For half-rep finisher sets, add them as additional sets with `reps` set to the target half-rep count.
+- If yes, fetch the existing routine using `get-routines` to find the matching routine for that day (e.g. "Upper A"). First, **rename the old routine** by calling `update-routine` to append "-OLD" to its title (e.g. "Upper A (Chest/Tricep focus) - 24/11" becomes "Upper A (Chest/Tricep focus) - 24/11-OLD"). Then call `create-routine` with the new exercises and sets. **Use the date calculated in the "Routine date" section above** — always the next upcoming workout weekday for this day type, never today's date and never reusing the old routine's date. Use the `exerciseTemplateId` values already seen in the last workout data — no need to look them up again. Set `reps` and `repRange: {start: reps, end: reps}` to the target rep count. Set `weightKg` to the target weight. For half-rep finisher sets, add them as additional sets with `reps` set to the target half-rep count.
 
   **Always populate the notes field for every exercise** — never leave it blank. The note should be a compact summary useful at-a-glance during the session. Include: sets × rep range, any half-rep instructions, and a short cue about progression or intent. Examples:
   - `"3 × 8–10; last set + 3 half reps (bottom); progressed from 25kg"`

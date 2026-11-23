@@ -14,7 +14,7 @@ You finish a workout. You open your terminal and type `/generate-next`. Claude:
 4. **Programs your next session** using real progressive overload rules: volume before load, capped weight jumps (never more than 25% increase), partial-rep finishers on isolation work, and smart deloading when you stall.
 5. **Pushes the new routine to Hevy** so it's waiting for you when you walk into the gym.
 
-It also handles scheduling. Type `/reschedule` and it figures out your next training dates based on your Mon/Wed/Fri rotation and renames your Hevy routines to match.
+It also handles scheduling. Type `/reschedule` and it figures out your next training dates based on your Tuesday–Friday weekly slots and renames your Hevy routines to match.
 
 ## How it works
 
@@ -52,12 +52,12 @@ The magic is in `CLAUDE.md` — it codifies the training principles a good coach
 
 2. **Edit `weights.md`** with the actual weights available at your gym — cable stack increments, barbell plates, dumbbells. This is how Claude knows what weight to prescribe.
 
-3. **Edit the routines** in `routines/` to match your training split. The included Day A/B/C split is a push-pull-legs hybrid, but you can structure it however you want. Use the markdown table format — the column headers tell Claude what to look for.
+3. **Edit the routines** in `routines/` to match your training split. The included split is Upper A/B + Lower A/B, but you can structure it however you want. Use the markdown table format — the column headers tell Claude what to look for.
 
 4. **Configure `.mcp.json`** — it runs `npx -y hevy-mcp` and reads your key from the `HEVY_API_KEY` environment variable (export it in your shell before starting Claude Code).
 
 5. **Tweak `CLAUDE.md`** — this is where you make it yours:
-   - Change workout days from Mon/Wed/Fri to whatever fits your schedule.
+   - Change the weekly slots (Tue Upper A, Wed Lower A, Thu Upper B, Fri Lower B) and time zone in `.claude/commands/generate-next.md` and `reschedule.md` to fit your schedule.
    - Adjust progression rules (e.g., allow bigger weight jumps if you're a beginner).
    - Modify rest periods, partial rep policy, or warm-up percentages.
    - Add rules specific to your training style or injuries.
