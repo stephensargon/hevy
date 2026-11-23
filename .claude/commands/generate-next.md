@@ -75,7 +75,7 @@ Every routine ends with a cycling block — always two sets, fixed targets:
 - Set 1: 2.6 km in 16 minutes
 - Set 2: 2.5 km in 15 minutes
 
-Include this in the proposed workout output and in the Hevy routine when creating it. To get the `exerciseTemplateId` for cycling, search `get-exercise-templates` if it wasn't in the last workout. Notes for cycling: `"Set 1: 2.6km / 16min; Set 2: 2.5km / 15min"`.
+Include this in the proposed workout output and in the Hevy routine when creating it. To get the `exerciseTemplateId` for cycling, use `search-exercise-templates` if it wasn't in the last workout. Notes for cycling: `"Set 1: 2.6km / 16min; Set 2: 2.5km / 15min"`.
 
 ---
 

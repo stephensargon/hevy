@@ -7,32 +7,32 @@ The `hevy-mcp` MCP server is configured in `.mcp.json`. Call its tools **directl
 ### Workouts
 - `get-workouts` — paginated list, newest first (`page`, `pageSize`)
 - `get-workout` — single workout by ID
-- `get-workout-count` — total workout count
 - `get-workout-events` — changes since a given date
 - `create-workout` — create a new workout
 - `update-workout` — update an existing workout
+- `replace-workout-exercises` — replace a workout's exercise list
 
 ### Routines
 - `get-routines` — paginated list
+- `search-routines` — find routines by name
 - `get-routine` — single routine by ID
 - `create-routine` — create a routine
 - `update-routine` — update a routine
 
 ### Exercise Templates
-- `get-exercise-templates` — paginated list
+- `search-exercise-templates` — find templates by name (use this to look up an `exerciseTemplateId`)
 - `get-exercise-template` — single template by ID
 - `get-exercise-history` — history for a template
 - `create-exercise-template` — create a custom template
 
 ### Routine Folders
-- `get-routine-folders` — list folders
 - `get-routine-folder` — single folder by ID
 - `create-routine-folder` — create a folder
 
-### Webhooks
-- `get-webhook-subscription`
-- `create-webhook-subscription`
-- `delete-webhook-subscription`
+### Body Measurements & Summary
+- `get-body-measurements` / `get-body-measurement` — read measurements
+- `create-body-measurement` / `update-body-measurement` — write measurements
+- `get-training-summary` — aggregate training summary
 
 ## Usage Rules
 - Call tools directly — no agents, no exploration loops.

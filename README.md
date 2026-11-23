@@ -44,7 +44,7 @@ The magic is in `CLAUDE.md` — it codifies the training principles a good coach
 
 - [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI installed
 - A [Hevy](https://hevy.com) account (Pro)
-- [hevy-mcp](https://github.com/jamesawgill/hevy-mcp) server set up with your Hevy API key
+- [hevy-mcp](https://github.com/chrisdoc/hevy-mcp) server set up with your Hevy API key
 
 ### Setup
 
@@ -54,7 +54,7 @@ The magic is in `CLAUDE.md` — it codifies the training principles a good coach
 
 3. **Edit the routines** in `routines/` to match your training split. The included Day A/B/C split is a push-pull-legs hybrid, but you can structure it however you want. Use the markdown table format — the column headers tell Claude what to look for.
 
-4. **Configure `.mcp.json`** to point to your hevy-mcp server install and `.env` file with your API key.
+4. **Configure `.mcp.json`** — it runs `npx -y hevy-mcp` and reads your key from the `HEVY_API_KEY` environment variable (export it in your shell before starting Claude Code).
 
 5. **Tweak `CLAUDE.md`** — this is where you make it yours:
    - Change workout days from Mon/Wed/Fri to whatever fits your schedule.

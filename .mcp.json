@@ -1,9 +1,12 @@
 {
   "mcpServers": {
     "hevy-mcp": {
-      "command": "/home/Ioan/.nvm/versions/node/v25.2.1/bin/node",
-      "args": ["--env-file", "/home/Ioan/Documents/repos/_external/hevy-mcp/.env", "/home/Ioan/Documents/repos/_external/hevy-mcp/dist/cli.mjs"],
-      "cwd": "/home/Ioan/Documents/repos/_external/hevy-mcp"
+      "command": "npx",
+      "args": ["-y", "hevy-mcp@6.2.5"],
+      "env": {
+        "HEVY_API_KEY": "${HEVY_API_KEY:-proxy-injected}",
+        "NODE_USE_ENV_PROXY": "1"
+      }
     }
   }
 }
