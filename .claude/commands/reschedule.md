@@ -10,8 +10,8 @@ Reschedule upcoming workout routines in Hevy based on the alternating Day A / Da
 
 ### 1. Fetch data (two calls)
 
-- `get-routines` (page 1, pageSize 4) — find all routines whose title starts with "Day" and does **not** contain "OLD" (case-insensitive). These are the "active" routines.
-- `get-workouts` (page 1, pageSize 1) — get the most recent workout to determine what was last done and when.
+- `get-routines` (page 1, page_size 4) — find all routines whose title starts with "Day" and does **not** contain "OLD" (case-insensitive). These are the "active" routines.
+- `get-workouts` (page 1, page_size 1) — get the most recent workout to determine what was last done and when.
 
 ### 2. Determine the starting point
 
@@ -62,4 +62,4 @@ Call `update-routine` for each active routine, changing only the `title` field. 
 - Only touch routines that start with "Day" and do NOT contain "OLD".
 - Never rename or modify `-OLD` routines.
 - Do not change exercises, sets, weights, or notes — only the title.
-- Use `pageSize: 4` for routines, `pageSize: 1` for the last workout (per CLAUDE.md).
+- Use `page_size: 4` for routines, `page_size: 1` for the last workout (per CLAUDE.md).

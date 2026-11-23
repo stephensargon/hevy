@@ -5,7 +5,7 @@ The `hevy-mcp` MCP server is configured in `.mcp.json`. Call its tools **directl
 ## Available Tools
 
 ### Workouts
-- `get-workouts` — paginated list, newest first (`page`, `pageSize`)
+- `get-workouts` — paginated list, newest first (`page`, `page_size`)
 - `get-workout` — single workout by ID
 - `get-workout-events` — changes since a given date
 - `create-workout` — create a new workout
@@ -36,8 +36,8 @@ The `hevy-mcp` MCP server is configured in `.mcp.json`. Call its tools **directl
 
 ## Usage Rules
 - Call tools directly — no agents, no exploration loops.
-- **Always use `pageSize: 4`** for all paginated tool calls — never higher, unless it's for get workouts in which case use **`pageSize: 6`**.
-- For "last workout": `get-workouts` with `page=1, pageSize=1`.
+- **Always use `page_size: 4`** for all paginated tool calls — never higher, unless it's for get workouts in which case use **`page_size: 6`**.
+- For "last workout": `get-workouts` with `page=1, page_size=1`.
 - For editing a template: `get-exercise-template` by ID, then `create-exercise-template` or update as needed.
 - Never call more tools than necessary to answer the question.
 
